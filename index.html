@@ -22,6 +22,10 @@
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
     <style>
         .author-list {
             display: flex;
@@ -87,52 +91,52 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-10 col-md-10 col-md-offset-1 text-center">
             <div class="author-list">
                 <div class="author-entry">
-                    A. Zhuravlev<sup>1</sup>⋆
+                    <a style="text-decoration:none" href="https://alekseizhuravlev.github.io/">A. Zhuravlev</a><sup>1</sup>⋆
                 </div>
                 <div class="author-entry">
-                    L. Bastian<sup>6,7,8</sup>⋆
+                    <a style="text-decoration:none" href="#">L. Bastian</a><sup>6,7,8</sup>⋆
                 </div>
                 <div class="author-entry">
-                    D. Cao<sup>2,3</sup>
+                    <a style="text-decoration:none" href="#">D. Cao</a><sup>2,3</sup>
                 </div>
                 <div class="author-entry">
-                    N. El Amrani<sup>2,3</sup>
+                    <a style="text-decoration:none" href="#">N. El Amrani</a><sup>2,3</sup>
                 </div>
                 <div class="author-entry">
-                    P. Roetzer<sup>2,3</sup>
+                    <a style="text-decoration:none" href="#">P. Roetzer</a><sup>2,3</sup>
                 </div>
                 <div class="author-entry">
-                    V. Ehm<sup>7,8</sup>
+                    <a style="text-decoration:none" href="#">V. Ehm</a><sup>7,8</sup>
                 </div>
                 <div class="author-entry">
-                    R. Marin<sup>7,8</sup>
+                    <a style="text-decoration:none" href="#">R. Marin</a><sup>7,8</sup>
                 </div>
                 <div class="author-entry">
-                    H. Nishizawa<sup>4</sup>
-                </div><br>
-                <div class="author-entry">
-                    S. Morishima<sup>5</sup>
+                    <a style="text-decoration:none" href="#">H. Nishizawa</a><sup>4</sup>
                 </div>
                 <div class="author-entry">
-                    C. Theobalt<sup>1</sup>
+                    <a style="text-decoration:none" href="#">S. Morishima</a><sup>5</sup>
                 </div>
                 <div class="author-entry">
-                    N. Navab<sup>7,8</sup>
+                    <a style="text-decoration:none" href="#">C. Theobalt</a><sup>1</sup>
                 </div>
                 <div class="author-entry">
-                    D. Cremers<sup>7,8</sup>
+                    <a style="text-decoration:none" href="#">N. Navab</a><sup>7,8</sup>
                 </div>
                 <div class="author-entry">
-                    F. Bernard<sup>2,3</sup>
+                    <a style="text-decoration:none" href="#">D. Cremers</a><sup>7,8</sup>
                 </div>
                 <div class="author-entry">
-                    Z. Lähner<sup>2,3</sup>
+                    <a style="text-decoration:none" href="#">F. Bernard</a><sup>2,3</sup>
                 </div>
                 <div class="author-entry">
-                    V. Golyanik<sup>1</sup>
+                    <a style="text-decoration:none" href="https://zorah.github.io/">Z. Lähner</a><sup>2,3</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="https://people.mpi-inf.mpg.de/~golyanik/">V. Golyanik</a><sup>1</sup>
                 </div>
             </div>
 
@@ -163,26 +167,46 @@
         </div>
     </div>
 
-    <div class="row">
+
+    <!-- <div class="row" style="padding-top: 20px;">
         <div class="col-md-10 col-md-offset-1">
-            <!-- <hr> -->
+            
+            <p class="text-justify">
+                <br>
+                <u>(b) Learned sign correction</u>.
+                The <b>eigenvectors</b> returned by a numerical eigensolver have <b>random signs</b>.
+                To select a specific sign, we <b>project</b> the eigenvectors onto the <b>learned correction vector</b> obtained with a feature extractor, and make the projection positive. 
+                The sign correction network is trained in an unsupervised manner: learning to <b>correct</b> eigenvectors that have <b>random signs</b>. 
+                <br>
+            </p>
+        </div>
+    </div> -->
+
+
+    <div class="row">
+        <div class="col-10 col-md-10 col-md-offset-1 text-center">
+            <!-- <hr>
             <h3 class="text-center"><b>Overview</b></h3>
-            <!-- <hr> -->
-            <p style="text-align: justify" class="text-justify">
-                This state-of-the-art report surveys modern approaches to non-rigid 3D shape correspondence,
-                spanning spectral, combinatorial, and deformation-based methods. It is intended as a structured
+            <hr> -->
+
+            <img src="assets/teaser_full.jpg" style="padding-top: 20px; width:80%">
+            <br>
+
+            <p style="padding-top: 20px; text-align: justify" class="text-justify">
+                This state-of-the-art report surveys modern approaches to <b>non-rigid 3D shape correspondence</b>,
+                spanning <b>spectral</b>, <b>combinatorial</b>, and <b>deformation-based</b> methods. It is intended as a structured
                 entry point for researchers, practitioners, and students interested in the foundations, recent
                 advances, and open challenges of the field.
             </p>
 
-            <div class="topic-tags">
+            <!-- <div class="topic-tags">
                 <span>Spectral methods</span>
                 <span>Combinatorial methods</span>
                 <span>Deformation-based methods</span><br>
                 <span>Geometric consistency</span>
                 <span>Datasets</span>
                 <span>Partial shape matching</span>
-                <!-- <span>Zero-shot correspondence</span>
+                <span>Zero-shot correspondence</span>
                 <span>Vision foundation models</span> -->
             </div>
         </div>
@@ -190,39 +214,46 @@
 
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <!-- <hr> -->
-            <h3><b>Abstract</b></h3>
-            <!-- <hr> -->
+            <hr>
+            <h3>Abstract</h3>
+            <hr>
             <p style="text-align: justify" class="text-justify">
-                Estimating correspondences between deformed shape instances is a long-standing problem in computer graphics;
-                numerous applications, from texture transfer to statistical modelling, rely on recovering an accurate
+                Estimating <b>correspondences</b> between <b>deformed shape instances</b> is a long-standing problem in computer graphics;
+                <b>numerous applications</b>, from texture transfer to statistical modelling, rely on recovering an accurate
                 correspondence map. Many methods have thus been proposed to tackle this challenging problem from varying
-                perspectives, depending on the downstream application. This state-of-the-art report is geared towards
+                perspectives, depending on the downstream application. <b>This state-of-the-art report</b> is geared towards
                 researchers, practitioners, and students seeking to understand recent trends and advances in the field.
-                We categorise developments into three paradigms: spectral methods based on functional maps, combinatorial
-                formulations that impose discrete constraints, and deformation-based methods that directly recover a global
+                We categorise developments into <b>three paradigms</b>: <b>spectral methods</b> based on functional maps, <b>combinatorial
+                formulations</b> that impose discrete constraints, and <b>deformation-based methods</b> that directly recover a global
                 alignment. Each school of thought offers different advantages and disadvantages, which we discuss throughout
-                the report. Meanwhile, we highlight the latest developments in each area and suggest new potential research
-                directions. Finally, we provide an overview of emerging challenges and opportunities in this growing field,
-                including the recent use of vision foundation models for zero-shot correspondence and the particularly
-                challenging task of matching partial shapes.
+                the report. Meanwhile, we highlight the <b>latest developments</b> in each area and suggest <b>new potential research
+                directions</b>. Finally, we provide an overview of emerging challenges and opportunities in this growing field,
+                including the recent use of <b>vision foundation models</b> for zero-shot correspondence and the particularly
+                challenging task of matching <b>partial shapes</b>.
             </p>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <!-- <hr> -->
-            <h3><b>Status</b></h3>
-            <!-- <hr> -->
-            <p style="text-align: justify" class="text-justify">
-                This page is currently under construction. A fuller version with figures, taxonomy, citation information,
-                and curated paper links will be added soon.
-            </p>
+        <div class="col-10 col-md-10 col-md-offset-1">
+            <hr>
+            <h3>BibTeX</h3>
+            <hr>
+            <!-- <p style="margin-bottom: 20px;">
+                Thank you for your interest in our work! If you find our paper useful, please consider citing it:
+              </p>               -->
+
+            <pre id="bibtex">
+@article{zhuravlev2026nonrigid,
+    title   = {Non-Rigid 3D Shape Correspondences: From Foundations to Open Challenges and Opportunities},
+    author  = {Zhuravlev, Aleksei and Bastian, Lennart and Cao, Dongliang and El Amrani, Nafie and Roetzer, Paul and Ehm, Viktoria and Marin, Riccardo and Nishizawa, Hiroki and Morishima, Shigeo and Theobalt, Christian and Navab, Nassir and Cremers, Daniel and Bernard, Florian and L{\"a}hner, Zorah and Golyanik, Vladislav},
+    journal = {Computer Graphics Forum},
+    year    = {2026},
+    doi     = {10.1111/cgf.70397}
+    } 
+            </pre> 
         </div>
     </div>
-
-</div>
 
 </body>
 </html>

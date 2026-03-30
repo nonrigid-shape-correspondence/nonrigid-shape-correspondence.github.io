@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Non-Rigid 3D Shape Correspondences</title>
+
+    <meta name="description" content="Non-Rigid 3D Shape Correspondences: From Foundations to Open Challenges and Opportunities"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <style>
+        .author-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px 28px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .author-entry {
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .resource-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .resource-buttons li {
+            list-style: none;
+        }
+
+        .topic-tags {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .topic-tags span {
+            display: inline-block;
+            margin: 6px 6px;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: #f8f8f8;
+            font-size: 15px;
+        }
+        h3 {
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container" id="main">
+
+    <div class="row">
+        <h2 class="col-md-12 text-center">
+            <b>Non-Rigid 3D Shape Correspondences</b>:<br>
+            From Foundations to Open Challenges and Opportunities<br>
+            <small>
+                Eurographics STAR 2026
+            </small>
+        </h2>
+    </div>
+
+    <div class="row">
+        <div class="col-10 col-md-10 col-md-offset-1 text-center">
+            <div class="author-list">
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="https://alekseizhuravlev.github.io/">A. Zhuravlev</a><sup>1</sup>⋆
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">L. Bastian</a><sup>6,7,8</sup>⋆
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">D. Cao</a><sup>2,3</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">N. El Amrani</a><sup>2,3</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">P. Roetzer</a><sup>2,3</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">V. Ehm</a><sup>7,8</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">R. Marin</a><sup>7,8</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">H. Nishizawa</a><sup>4</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">S. Morishima</a><sup>5</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">C. Theobalt</a><sup>1</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">N. Navab</a><sup>7,8</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">D. Cremers</a><sup>7,8</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="#">F. Bernard</a><sup>2,3</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="https://zorah.github.io/">Z. Lähner</a><sup>2,3</sup>
+                </div>
+                <div class="author-entry">
+                    <a style="text-decoration:none" href="https://people.mpi-inf.mpg.de/~golyanik/">V. Golyanik</a><sup>1</sup>
+                </div>
+            </div>
+
+            <p style="margin-top: 10px; line-height: 1.8; text-align: center">
+                <sup>1</sup>MPI for Informatics &nbsp;
+                <sup>2</sup>University of Bonn &nbsp;
+                <sup>3</sup>Lamarr Institute &nbsp;
+                <sup>4</sup>Waseda University &nbsp;
+                <sup>5</sup>Waseda Research Institute for Science and Engineering <br>
+                <sup>6</sup>Imperial College London &nbsp;
+                <sup>7</sup>Technical University of Munich &nbsp;
+                <sup>8</sup>Munich Center for Machine Learning &nbsp;
+                ⋆Equal Contribution
+            </p>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0pt;">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <ul class="nav nav-pills nav-fill text-center resource-buttons">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="assets/Report_preview.jpg" height="60px">
+                        <h4><strong>Paper</strong></h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- <div class="row" style="padding-top: 20px;">
+        <div class="col-md-10 col-md-offset-1">
+            
+            <p class="text-justify">
+                <br>
+                <u>(b) Learned sign correction</u>.
+                The <b>eigenvectors</b> returned by a numerical eigensolver have <b>random signs</b>.
+                To select a specific sign, we <b>project</b> the eigenvectors onto the <b>learned correction vector</b> obtained with a feature extractor, and make the projection positive. 
+                The sign correction network is trained in an unsupervised manner: learning to <b>correct</b> eigenvectors that have <b>random signs</b>. 
+                <br>
+            </p>
+        </div>
+    </div> -->
+
+
+    <div class="row">
+        <div class="col-10 col-md-10 col-md-offset-1 text-center">
+            <!-- <hr>
+            <h3 class="text-center"><b>Overview</b></h3>
+            <hr> -->
+
+            <img src="figures/teaser_full.jpg" style="padding-top: 20px; width:80%">
+            <br>
+
+            <p style="padding-top: 20px; text-align: justify" class="text-justify">
+                This state-of-the-art report surveys modern approaches to <b>non-rigid 3D shape correspondence</b>,
+                spanning <b>spectral</b>, <b>combinatorial</b>, and <b>deformation-based</b> methods. It is intended as a structured
+                entry point for researchers, practitioners, and students interested in the foundations, recent
+                advances, and open challenges of the field.
+            </p>
+
+            <!-- <div class="topic-tags">
+                <span>Spectral methods</span>
+                <span>Combinatorial methods</span>
+                <span>Deformation-based methods</span><br>
+                <span>Geometric consistency</span>
+                <span>Datasets</span>
+                <span>Partial shape matching</span>
+                <span>Zero-shot correspondence</span>
+                <span>Vision foundation models</span> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <hr>
+            <h3><b>Abstract</b></h3>
+            <hr>
+            <p style="text-align: justify" class="text-justify">
+                Estimating <b>correspondences</b> between <b>deformed shape instances</b> is a long-standing problem in computer graphics;
+                <b>numerous applications</b>, from texture transfer to statistical modelling, rely on recovering an accurate
+                correspondence map. Many methods have thus been proposed to tackle this challenging problem from varying
+                perspectives, depending on the downstream application. <b>This state-of-the-art report</b> is geared towards
+                researchers, practitioners, and students seeking to understand recent trends and advances in the field.
+                We categorise developments into <b>three paradigms</b>: <b>spectral methods</b> based on functional maps, <b>combinatorial
+                formulations</b> that impose discrete constraints, and <b>deformation-based methods</b> that directly recover a global
+                alignment. Each school of thought offers different advantages and disadvantages, which we discuss throughout
+                the report. Meanwhile, we highlight the <b>latest developments</b> in each area and suggest <b>new potential research
+                directions</b>. Finally, we provide an overview of emerging challenges and opportunities in this growing field,
+                including the recent use of <b>vision foundation models</b> for zero-shot correspondence and the particularly
+                challenging task of matching <b>partial shapes</b>.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-10 col-md-10 col-md-offset-1">
+            <hr>
+            <h3><b>Part 1: Shape correspondence problem</b></h3>
+            <hr>
+
+            <div class="text-center">
+                <img src="figures/fig_02.jpg" style="width:60%">
+            </div>
+        </div>
+
+        <div class="col-10 col-md-8 col-md-offset-2 text-justify" style="padding-top: 20px">
+            <p>
+                <b>(a) Per-vertex feature functions</b> are computed on two non-rigidly deformed shapes visualised by colour.
+                When these features are sufficiently descriptive, a correspondence mapping can be derived.<br>
+                <b>(b) Dense correspondences</b> computed between two non-rigidly deformed shapes, demonstrating geometric and semantic alignment.
+            </p>
+        </div>
+
+            
+        <div class="col-10 col-md-10 col-md-offset-1 text-justify"
+            <p style="padding-top: 20px; text-align: justify">
+                In 3D geometry processing, a shape is typically defined as a two-dimensional surface embedded in three-dimensional space,
+                often discretised as a triangular mesh with vertices \( X_\mathcal{M} \), edges \( E_\mathcal{M} \), and faces \( T_\mathcal{M} \).
+                Alternatively, shapes may be represented as unstructured point clouds.            
+                Given two shapes \( \mathcal{M} \) and \( \mathcal{N} \), the goal of shape correspondence is to determine which points on
+                \( \mathcal{M} \) match semantically or geometrically to points on \( \mathcal{N} \). This relationship is expressed as a point-wise map
+                \( \Pi_{\mathcal{M}\mathcal{N}} : \mathcal{M} \rightarrow \mathcal{N} \),
+                assigning each point on the source shape to a corresponding point on the target shape.
+                We use the terms <i>correspondence</i> and <i>matching</i> interchangeably.
+                We focus on <b>dense correspondences</b>, where every point on the source shape is matched.
+                Formally, for \( n_{\mathcal{M}} \leqslant n_{\mathcal{N}} \), the map \( \Pi_{\mathcal{M}\mathcal{N}} \) is injective:
+                \( \Pi_{\mathcal{M}\mathcal{N}} \mathbf{1} = \mathbf{1}, \; \Pi_{\mathcal{M}\mathcal{N}}^\top \mathbf{1} \leqslant \mathbf{1} \),
+                where \( \mathbf{1} \) denotes the all-ones vector.        
+            </p>
+
+            <p style="padding-top: 15px; text-align: justify">
+                A central goal in <b>correspondence estimation</b> is to quantify similarity between shapes in a tractable form.
+                Given shapes \( \mathcal{M} \) and \( \mathcal{N} \), per-vertex <b>descriptors</b>
+                \( f_\mathcal{M} \in \mathbb{R}^{n_\mathcal{M} \times d} \) and
+                \( f_\mathcal{N} \in \mathbb{R}^{n_\mathcal{N} \times d} \)
+                encode geometric or semantic properties, either via hand-crafted heuristics or learned models.
+                The <b>descriptor preservation principle</b> assumes that corresponding points share similar features:
+                \( f_\mathcal{M} \approx \Pi_{\mathcal{M}\mathcal{N}} f_\mathcal{N} \).
+                Classical descriptors include <b>extrinsic</b> signals (e.g. coordinates, normals) and <b>intrinsic</b> ones (e.g. curvature, HKS, WKS),
+                each with inherent limitations such as lack of isometric invariance, sensitivity to noise, or ambiguity under symmetries.
+                Recent approaches instead <b>learn descriptors</b> from data, producing more expressive and task-specific features,
+                though challenges remain due to ambiguities, partiality, and discretisation artefacts.
+                A naive strategy is to recover correspondences via <b>nearest-neighbour matching</b>:
+                \( \underset{\Pi_{\mathcal{M}\mathcal{N}} \in \{0,1\}^{n_\mathcal{M} \times n_\mathcal{N}}}{\arg\min}
+                \| f_\mathcal{M} - \Pi_{\mathcal{M}\mathcal{N}} f_\mathcal{N} \|_F^2 \),
+                but without additional constraints this often leads to <b>geometrically inconsistent</b> mappings.
+                Consequently, modern methods incorporate <b>structural priors</b> and <b>geometric constraints</b> to obtain accurate correspondences.
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-10 col-md-10 col-md-offset-1">
+            <hr>
+            <h3><b>Correspondence evaluation</b></h3>
+            <hr>
+
+            <div class="text-center">
+                <img src="figures/fig_03.jpg" style="width:70%">
+            </div>
+        </div>
+
+        <div class="col-10 col-md-8 col-md-offset-2 text-justify" style="padding-top: 20px">
+            <p>
+                Qualitative visualisation of <b>correspondence quality</b> using different transfer strategies.<br>
+                <b>(a) Color transfer</b> provides an overview of the global correspondence structure.<br>
+                <b>(b) High-frequency texture transfer</b> can reveal small local misalignments.<br>
+                <b>(c) Deformation transfer</b> can similarly visualise small topological inconsistencies caused by inaccurate correspondences. <br>
+            </p>
+        </div>
+
+        <div class="col-10 col-md-10 col-md-offset-1">
+    
+            <p style="padding-top: 10px; text-align: justify">
+                Once a correspondence map \( \Pi_{\mathcal{M}\mathcal{N}} \) is recovered, it can be evaluated using several complementary criteria.
+                <b>Accuracy</b> is typically measured against ground-truth correspondences using normalised geodesic error, from which standard metrics such as <b>mean geodesic error (MGE)</b>, <b>percentage of correct keypoints (PCK)</b>, and <b>area under the PCK curve (AUC)</b> are derived.
+            </p>
+
+            <p style="padding-top: 10px; text-align: justify">
+                Beyond accuracy, <b>smoothness</b> evaluates geometric consistency, for example via geodesic distortion, Dirichlet energy, or conformal distortion, which penalise irregular or non-local mappings.
+                <b>Coverage</b> measures how completely the target shape is utilised, often through the un-coverage rate, while <b>bijectivity</b> assesses one-to-one behaviour using inverse consistency and orientation preservation criteria.
+            </p>
+
+            <p style="padding-top: 10px; text-align: justify">
+                In practice, <b>visualisation</b> (e.g. colour or texture transfer, deformation transfer) provides qualitative insight into correspondence quality.
+                Importantly, <b>downstream performance</b> often imposes additional requirements beyond pure accuracy: applications such as deformation transfer, statistical shape modelling, or medical analysis demand correspondences that are not only accurate but also smooth, consistent, and semantically meaningful.
+            </p>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-10 col-md-10 col-md-offset-1">
+            <hr>
+            <h3><b>Part 2: Spectral methods</b></h3>
+            <hr>
+
+            <div class="text-center">
+                <img src="figures/03/functional_map_xy_compressed.jpg" style="width:70%">
+            </div>
+        </div>
+
+        <div class="col-10 col-md-8 col-md-offset-2 text-justify" style="padding-top: 20px">
+            <p>
+                Visualisation of the <b>functional map framework</b> as an analogy to Fourier analysis.
+                Functions \( f_{\mathcal{M}} \), \( f_{\mathcal{N}} \) on shapes \( \mathcal{M} \), \( \mathcal{N} \) are represented in the Laplace–Beltrami basis \( \phi \),
+                and the functional map \( C_{\mathcal{MN}} \) transfers their coefficients \( a \rightarrow b \),
+                encoding point-wise correspondences \( \Pi_{\mathcal{NM}} \) in a compact \( k \times k \) matrix.
+            </p>
+        </div> 
+
+        <div class="col-10 col-md-10 col-md-offset-1">
+            <p style="padding-top: 10px; text-align: justify">
+                <b>Spectral methods</b> provide a powerful framework for correspondence by leveraging intrinsic properties of shapes that are invariant to isometric deformations.
+                Central to this approach is the <b>Laplace–Beltrami operator (LBO)</b>, a generalisation of the Laplace operator to surfaces, defined as
+                \( \Delta f = \operatorname{div}(\nabla f) \).
+                In the discrete setting, it is commonly represented using the cotangent Laplacian
+                \( L_{\mathcal{M}} = A_{\mathcal{M}}^{-1} W_{\mathcal{M}} \),
+                where \( W_{\mathcal{M}} \) encodes cotangent weights and \( A_{\mathcal{M}} \) contains local area elements.
+                The eigendecomposition of the LBO,
+                \( \Delta_{\mathcal{M}} \phi_i = \lambda_i \phi_i \),
+                yields eigenfunctions that form an intrinsic basis ordered by frequency, providing a natural representation for functions on the surface.
+            </p>
+
+            <p style="padding-top: 10px; text-align: justify">
+                Building on this spectral representation, the <b>functional map framework</b> expresses correspondences as linear operators between function spaces rather than point-wise mappings.
+                Given descriptor functions \( f_{\mathcal{M}} \), \( f_{\mathcal{N}} \) and spectral bases \( \phi_{\mathcal{M}} \), \( \phi_{\mathcal{N}} \), the functional map
+                \( C_{\mathcal{MN}} \in \mathbb{R}^{k \times k} \) is estimated by solving
+                \( C_{\mathcal{MN}} = \arg\min_{C} \| C \phi_{\mathcal{M}}^{\dagger} f_{\mathcal{M}} - \phi_{\mathcal{N}}^{\dagger} f_{\mathcal{N}} \|_F^2 \),
+                effectively reducing the high-dimensional matching problem to a compact coefficient matrix.
+                The corresponding point-wise map can then be recovered via
+                \( \Pi_{\mathcal{NM}} \phi_{\mathcal{N}} \approx \phi_{\mathcal{M}} C_{\mathcal{NM}} \),
+                linking spatial and spectral representations.
+                This formulation enables efficient and elegant correspondence estimation and serves as the foundation for both classical refinement methods and modern learning-based approaches.
+            </p>
+
+            <hr>
+            <h3 style="padding-top: 10px; padding-bottom: 10px;"><b>Classification of spectral methods</b></h3> 
+            <hr>
+
+            $$
+            \newcommand{\cmark}{\color{green}{\checkmark}}
+            \newcommand{\xmark}{\color{red}{\times}}
+            \small
+            \begin{array}{l l ccccc}
+            \hline 
+            \textbf{Method} & \textbf{ArXiv link} & \textbf{Cat.} & \textbf{MS} & \textbf{NI} & \textbf{P} & \textbf{TN} \\
+            \hline
+            \text{ZoomOut} & \href{https://arxiv.org/abs/1904.07865}{\text{Melzi et al. 2019}} & \mathbf{\color{blue}{A}} & \xmark & \cmark & \cmark & \xmark \\
+            \text{ConsistentZoomOut} & \href{#}{\text{Huang et al. 2020}} & \mathbf{\color{blue}{A}} & \cmark & \cmark & \cmark & \xmark \\
+            \text{RHM} & \href{#}{\text{Ezuz & Ben-Chen 2019}} & \mathbf{\color{blue}{A}} & \xmark & \cmark & \xmark & \xmark \\
+            \text{ComplexFMaps} & \href{#}{\text{Donati et al. 2022}} & \mathbf{\color{blue}{A}} & \xmark & \cmark & \xmark & \xmark \\
+            \text{DiscreteOpt} & \href{#}{\text{Ren et al. 2021}} & \mathbf{\color{blue}{A}} & \xmark & \cmark & \xmark & \xmark \\
+            \text{SmoothFM} & \href{#}{\text{Magnet et al. 2022}} & \mathbf{\color{blue}{A}} & \xmark & \cmark & \xmark & \xmark \\
+            \hline
+            \text{GeomFMaps} & \href{#}{\text{Donati et al. 2020}} & \mathbf{\color{orange}{S}} & \xmark & \xmark & \xmark & \xmark \\
+            \text{DPFM} & \href{#}{\text{Attaiki et al. 2021}} & \mathbf{\color{orange}{S}} & \xmark & \xmark & \cmark & \xmark \\
+            \text{SRFeat} & \href{#}{\text{Li et al. 2022}} & \mathbf{\color{orange}{S}} & \xmark & \cmark & \xmark & \xmark \\
+            \text{EchoMatch} & \href{#}{\text{Xie et al. 2025}} & \mathbf{\color{orange}{S}} & \xmark & \xmark & \cmark & \xmark \\
+            \text{DenoisFM} & \href{#}{\text{Zhuravlev et al. 2025}} & \mathbf{\color{orange}{S}} & \xmark & \cmark & \xmark & \xmark \\
+            \text{FRIDU} & \href{#}{\text{Rimon et al. 2025}} & \mathbf{\color{orange}{S}} & \xmark & \xmark & \xmark & \xmark \\
+            \text{DiffuMatch} & \href{#}{\text{Pierson et al. 2025}} & \mathbf{\color{orange}{S}} & \xmark & \cmark & \xmark & \xmark \\
+            \hline
+            \text{UnsupFMNet} & \href{#}{\text{Halimi et al. 2019}} & \mathbf{\color{green}{U}} & \xmark & \xmark & \xmark & \xmark \\
+            \text{SURFMNet} & \href{#}{\text{Roufosse et al. 2019}} & \mathbf{\color{green}{U}} & \xmark & \xmark & \xmark & \xmark \\
+            \text{DPFM-unsup} & \href{#}{\text{Attaiki et al. 2021}} & \mathbf{\color{green}{U}} & \xmark & \xmark & \cmark & \xmark \\
+            \text{UDMSM} & \href{#}{\text{Cao et al. 2022}} & \mathbf{\color{green}{U}} & \cmark & \xmark & \xmark & \xmark \\
+            \text{AttentiveFMaps} & \href{#}{\text{Li et al. 2022}} & \mathbf{\color{green}{U}} & \xmark & \cmark & \xmark & \xmark \\
+            \text{ULRSSM} & \href{#}{\text{Cao et al. 2023}} & \mathbf{\color{green}{U}} & \xmark & \cmark & \cmark & \cmark \\
+            \text{G-msm} & \href{#}{\text{Eisenberger et al. 2023}} & \mathbf{\color{green}{U}} & \cmark & \cmark & \xmark & \cmark \\
+            \text{HybridFMaps} & \href{#}{\text{Bastian et al. 2024}} & \mathbf{\color{green}{U}} & \xmark & \cmark & \xmark & \cmark \\
+            \text{DiffZoomOut} & \href{#}{\text{Magnet et al. 2024}} & \mathbf{\color{green}{U}} & \xmark & \cmark & \xmark & \cmark \\
+            \hline
+            \end{array} 
+            $$ 
+
+        </div>
+
+        <div class="col-10 col-md-8 col-md-offset-2 text-justify" style="padding-top: 10px">
+            <p><strong>Overview of spectral shape correspondence methods.</strong>
+                Each method is categorized by approach (Cat.):
+                <span style="color:blue;"><b>A</b></span> axiomatic,
+                <span style="color:orange;"><b>S</b></span> supervised,
+                <span style="color:green;"><b>U</b></span> unsupervised.
+                The remaining columns indicate supported properties:
+                <strong>MS</strong> multi-shape consistency,
+                <strong>NI</strong> non-isometric deformations,
+                <strong>P</strong> partiality,
+                <strong>TN</strong> topological noise.
+            </p>
+        </div>
+
+
+        <div class="col-10 col-md-10 col-md-offset-1">
+            <p style="text-align: justify">
+                <b>Axiomatic methods</b> start from an initial, often noisy correspondence and refine it using geometric constraints.
+                They leverage the relationship between <b>functional maps</b> and <b>point-wise maps</b>, enabling iterative optimisation that enforces <b>smoothness</b>, <b>bijectivity</b>, and <b>geometric consistency</b>.
+                While these approaches provide strong <b>theoretical foundations</b>, they often rely on assumptions such as near-isometric deformations, limiting their robustness in real-world settings.
+                Consequently, recent work integrates these principles into <b>learning-based frameworks</b> for improved performance.
+            </p>
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
